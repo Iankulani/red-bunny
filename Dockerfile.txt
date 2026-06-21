@@ -1,0 +1,104 @@
+# ============================================
+# 🐇 RED_BUNNY v2.0.0 - Dockerfile
+# Based on Ubuntu 22.04 LTS
+# Author: Ian Carter Kulani, MSc
+# ============================================
+
+FROM ubuntu:22.04
+
+LABEL maintainer="Ian Carter Kulani <iancarterkulani@protonmail.com>"
+LABEL version="2.0.0"
+LABEL description="🐇 RedBunny - Ultimate Multi-Platform Phishing & Command Center"
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV WORKDIR=/app
+
+# Create working directory
+WORKDIR $WORKDIR
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    # Core tools
+    python3 \
+    python3-pip \
+    python3-dev \
+    python3-venv \
+    git \
+    curl \
+    wget \
+    vim \
+    nano \
+    build-essential \
+    gcc \
+    make \
+    # Network tools
+    nmap \
+    nikto \
+    traceroute \
+    dnsutils \
+    net-tools \
+    iptables \
+    iproute2 \
+    whois \
+    sshpass \
+    # Development libraries
+    libpcap-dev \
+    libssl-dev \
+    libffi-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    # Browser for WhatsApp
+    chromium-browser \
+    chromium-chromedriver \
+    # Optional
+    sudo \
+    htop \
+    tmux \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY . .
+
+# Create directories
+RUN mkdir -p .red_bunny \
+    reports \
+    payloads \
+    workspaces \
+    scans \
+    nikto_results \
+    whatsapp_session \
+    phishing_pages \
+    traffic_logs \
+    phishing_templates \
+    captured_credentials \
+    ssh_keys \
+    ssh_logs \
+    time_history \
+    wordlists \
+    custom_phishing \
+    signal_session \
+    web_ui \
+    webhooks
+
+# Set permissions
+RUN chmod +x red_bunny.py
+
+# Expose ports
+EXPOSE 8080 8080
+EXPOSE 22 22
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/ || exit 1
+
+# Run RedBunny
+CMD ["python3", "red_bunny.py"]

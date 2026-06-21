@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+*.egg
+
+# RedBunny specific
+.red_bunny/
+reports/
+logs/
+*.log
+*.db
+*.sqlite3
+*.session
+*.pkl
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Security
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.jks
+
+# Docker
+*.dockerignore
+docker-compose.override.yml
+
+# Environment
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,47 @@
+# ============================================
+# 🐇 RED_BUNNY v2.0.0 - Python Dependencies
+# ============================================
+
+# Core Requirements
+requests>=2.31.0
+colorama>=0.4.6
+psutil>=5.9.5
+cryptography>=41.0.0
+
+# Web Framework
+Flask>=2.3.0
+flask-socketio>=5.3.0
+python-socketio>=5.9.0
+
+# SSH
+paramiko>=3.3.1
+
+# Database
+sqlite3  # Built-in
+
+# Network Scanning & Tools
+python-whois>=0.7.3
+scapy>=2.5.0
+pyshorteners>=1.0.1
+qrcode>=7.4.2
+Pillow>=10.0.0
+
+# Platform Bots
+discord.py>=2.3.0
+telethon>=1.35.0
+slack-sdk>=3.23.0
+
+# WhatsApp
+selenium>=4.15.0
+webdriver-manager>=4.0.1
+
+# Additional Utilities
+pyyaml>=6.0
+tqdm>=4.66.0
+prettytable>=3.9.0
+
+# Security
+dnspython>=2.4.0
+
+# For signal-cli integration (optional)
+# signal-cli binary required separately

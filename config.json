@@ -1,0 +1,100 @@
+{
+    "monitoring": {
+        "enabled": true,
+        "port_scan_threshold": 10,
+        "monitor_interval": 60
+    },
+    "scanning": {
+        "default_ports": "1-1000",
+        "timeout": 30,
+        "scan_speed": "normal"
+    },
+    "security": {
+        "auto_block": false,
+        "log_level": "INFO",
+        "max_failed_attempts": 5,
+        "block_duration": 3600
+    },
+    "nikto": {
+        "enabled": true,
+        "timeout": 300,
+        "max_vulnerabilities": 100
+    },
+    "traffic_generation": {
+        "enabled": true,
+        "max_duration": 300,
+        "allow_floods": false,
+        "default_rate": 100
+    },
+    "social_engineering": {
+        "enabled": true,
+        "default_port": 8080,
+        "capture_credentials": true,
+        "ssl_enabled": false
+    },
+    "ssh": {
+        "enabled": true,
+        "default_timeout": 30,
+        "max_connections": 5,
+        "key_dir": ".red_bunny/ssh_keys"
+    },
+    "discord": {
+        "enabled": false,
+        "token": "",
+        "prefix": "!",
+        "channel_id": "",
+        "allowed_users": []
+    },
+    "telegram": {
+        "enabled": false,
+        "api_id": "",
+        "api_hash": "",
+        "bot_token": "",
+        "allowed_users": []
+    },
+    "slack": {
+        "enabled": false,
+        "bot_token": "",
+        "channel_id": "",
+        "prefix": "!",
+        "allowed_users": []
+    },
+    "whatsapp": {
+        "enabled": false,
+        "phone_number": "",
+        "prefix": "/",
+        "session_dir": ".red_bunny/whatsapp_session",
+        "headless": true
+    },
+    "imessage": {
+        "enabled": false,
+        "phone_numbers": [],
+        "prefix": "!",
+        "allowed_contacts": []
+    },
+    "signal": {
+        "enabled": false,
+        "webhook_url": "",
+        "prefix": "!",
+        "allowed_users": []
+    },
+    "web": {
+        "enabled": true,
+        "port": 8080,
+        "host": "0.0.0.0",
+        "debug": false,
+        "secret_key": "change_this_in_production"
+    },
+    "phishing": {
+        "default_port": 8080,
+        "capture_credentials": true,
+        "log_credentials": true,
+        "redirect_url": "https://www.google.com"
+    },
+    "red_bunny": {
+        "theme": "red",
+        "version": "2.0.0",
+        "session_timeout": 3600,
+        "max_history": 1000
+    }
+}

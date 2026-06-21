@@ -1,0 +1,59 @@
+# ============================================
+# 🐇 RED_BUNNY v2.0.0 - Makefile
+# ============================================
+
+.PHONY: help install install-dev clean test run docker-build docker-run
+
+help:
+	@echo "🐇 RedBunny Makefile Commands:"
+	@echo "  make install      - Install dependencies"
+	@echo "  make install-dev  - Install dev dependencies"
+	@echo "  make clean        - Clean temporary files"
+	@echo "  make test         - Run tests"
+	@echo "  make run          - Run RedBunny"
+	@echo "  make docker-build - Build Docker image"
+	@echo "  make docker-run   - Run Docker container"
+
+install:
+	@echo "📦 Installing dependencies..."
+	pip install -r requirements.txt
+	pip install -e .
+
+install-dev:
+	@echo "📦 Installing development dependencies..."
+	pip install -r requirements-dev.txt
+	pip install -e .
+
+clean:
+	@echo "🧹 Cleaning..."
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	find . -type f -name "*.pyc" -delete
+	find . -type f -name "*.pyo" -delete
+	find . -type f -name "*.pyd" -delete
+	rm -rf .pytest_cache/
+	rm -rf .coverage
+	rm -rf htmlcov/
+
+test:
+	@echo "🧪 Running tests..."
+	python -m pytest tests/
+
+run:
+	@echo "🚀 Running RedBunny..."
+	python red_bunny.py
+
+docker-build:
+	@echo "🐳 Building Docker image..."
+	docker build -t redbunny:latest .
+
+docker-run:
+	@echo "🐳 Running Docker container..."
+	docker run -it --rm \
+		--name redbunny \
+		--network host \
+		--cap-add=NET_ADMIN \
+		--cap-add=NET_RAW \
+		--cap-add=SYS_ADMIN \
+		--security-opt seccomp=unconfined \
+		-v $$(pwd)/data:/app/.red_bunny \
+		redbunny:latest
