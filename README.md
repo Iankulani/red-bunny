@@ -48,3 +48,5 @@ python red-bunny.py
 
 ```
 # Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Iankulani/red-bunny&type=Date)](https://star-history.com/#Iankulani/red-bunny&Date)
